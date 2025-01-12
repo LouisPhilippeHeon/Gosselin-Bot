@@ -7,3 +7,9 @@ Veuillez ne pas abuser de l'api de Gosselin Photo. Je ne suis pas responsable de
 Ceux qui ont été ajoutés depuis la fois précédente sont envoyés à l'utilisateur dans un channel du serveur Discord.
 ## Commande `/refresh`
 Permet de manuellement faire une vérification.
+
+# Pour démarrer
+Installer les dépendances : `npm install`
+Démarrer le projet : `npm run debug`
+Mettre à jour les commandes : `npm run deploy-commands`
+Transpiler : `npm run build`
