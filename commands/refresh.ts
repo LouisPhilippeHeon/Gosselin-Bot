@@ -1,5 +1,5 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
-import { displayNewDeals } from '../models/message';
+import { displayNewDeals } from '../services/message';
 
 export const data = new SlashCommandBuilder()
 	.setName('refresh')

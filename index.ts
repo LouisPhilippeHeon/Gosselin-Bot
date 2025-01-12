@@ -4,7 +4,7 @@ import fs = require('node:fs');
 import { syncTags } from './services/storage';
 import { CronJob } from 'cron';
 import { client } from './client';
-import { displayNewDeals } from './models/message';
+import { displayNewDeals } from './services/message';
 
 loadCommand();
 

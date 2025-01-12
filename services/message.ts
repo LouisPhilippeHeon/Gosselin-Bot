@@ -1,6 +1,6 @@
 import { ChannelType, ChatInputCommandInteraction, EmbedBuilder, Guild, MessageCreateOptions, MessagePayload, TextChannel } from 'discord.js';
-import { fetchUsedEquipments } from '../services/http';
-import { getAllIds, saveIds } from '../services/storage';
+import { fetchUsedEquipments } from './http';
+import { getAllIds, saveIds } from './storage';
 import { guildId } from '../config';
 import { client } from '../client';
 
