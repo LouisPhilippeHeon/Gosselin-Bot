@@ -1,11 +1,10 @@
 import { token } from './config';
-import { Client, Collection, Events, GatewayIntentBits } from 'discord.js';
+import { Collection, Events } from 'discord.js';
 import fs = require('node:fs');
-import { ClientWithCommands } from './models/client-with-commands';
 import { syncTags } from './services/storage';
-
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] }) as ClientWithCommands;
-client.commands = new Collection();
+import { CronJob } from 'cron';
+import { client } from './client';
+import { displayNewDeals } from './models/message';
 
 loadCommand();
 
@@ -50,3 +49,12 @@ client.on(Events.InteractionCreate, async (interaction) => {
 			await interaction.reply({ content: 'Une erreur s\'est produite lors de l\'exécution de la commande.', ephemeral: true });
 	}
 });
+
+new CronJob(
+	'0 */1 * * *',
+	function () {
+		displayNewDeals();
+	},
+	null,
+	true
+);
