@@ -14,7 +14,7 @@ loadCommand();
 
 client.once(Events.ClientReady, async readyClient => {
 	await syncTags();
-	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+	console.log(`Prêt ! Connecté en tant que ${readyClient.user.tag}.`);
 });
 
 function loadCommand() {
