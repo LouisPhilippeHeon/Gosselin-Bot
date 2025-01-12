@@ -10,6 +10,9 @@ Permet de manuellement faire une vérification.
 
 # Pour démarrer
 Installer les dépendances : `npm install`
+
 Démarrer le projet : `npm run debug`
+
 Mettre à jour les commandes : `npm run deploy-commands`
+
 Transpiler : `npm run build`
