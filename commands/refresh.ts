@@ -8,4 +8,3 @@ export const data = new SlashCommandBuilder()
 export async function execute(interaction: ChatInputCommandInteraction) {
 	displayNewDeals(interaction);
 }
-
