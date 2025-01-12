@@ -1,4 +1,4 @@
-export type UsedItem = {
+export type Equipment = {
 	id: number;
 	name: string;
 	price: number;

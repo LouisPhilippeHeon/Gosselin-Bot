@@ -1,7 +1,7 @@
 {
 	"name": "gosselin-bot",
 	"version": "1.0.0",
-	"description": "Be notified of new deals on used items at Gosselin Photo",
+	"description": "Be notified of new deals on used equipment at Gosselin Photo",
 	"main": "index.ts",
 	"scripts": {
 		"build": "npx tsc",

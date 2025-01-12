@@ -33,9 +33,9 @@ export async function getAllIds(): Promise<number[]> {
 	return tagRecords.map((record) => record.id);
 }
 
-export async function saveIds(items: number[]) {
+export async function saveIds(equipmentIds: number[]) {
 	await Tag.drop();
 	await syncTags();
-	const tagObjects = items.map((id) => ({ id }));
+	const tagObjects = equipmentIds.map((id) => ({ id }));
 	await Tag.bulkCreate(tagObjects);
 }

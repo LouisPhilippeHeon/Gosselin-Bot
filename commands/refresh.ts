@@ -1,31 +1,31 @@
 import { ChatInputCommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import { fetchUsedItems } from '../services/http';
+import { fetchUsedEquipments } from '../services/http';
 import { getAllIds, saveIds } from '../services/storage';
 
 const maxEmbedsPerMessage = 10;
 
 export const data = new SlashCommandBuilder()
 	.setName('refresh')
-	.setDescription('Vérifier si de nouveaux items usagés sont disponibles.');
+	.setDescription('Vérifier si de nouveaux équipements usagés sont disponibles.');
 
 export async function execute(interaction: ChatInputCommandInteraction) {
-	const usedItems = await fetchUsedItems();
+	const usedEquipments = await fetchUsedEquipments();
 	const oldIds = await getAllIds();
 
 	if (oldIds.length === 0)
 		await interaction.reply('Aucun équipement n\'est déjà en mémoire, il est donc impossible d\'indiquer lesquels sont nouveaux.');
 	else {
-		const newItems = usedItems.filter(item => !oldIds.includes(item.id));
+		const newEquipments = usedEquipments.filter(equipment => !oldIds.includes(equipment.id));
 
-		if (newItems.length === 0)
+		if (newEquipments.length === 0)
 			await interaction.reply('Aucun nouvel équipement usagé.');
 		else {
 			const embeds = [];
-			for (const item of newItems) {
-				embeds.push(new EmbedBuilder({ title: item.name, description: `${item.price} $`, url: item.url }));
+			for (const Equipment of newEquipments) {
+				embeds.push(new EmbedBuilder({ title: Equipment.name, description: `${Equipment.price} $`, url: Equipment.url }));
 			}
 
-			await interaction.reply({ content: `${newItems.length} nouveaux équipements usagés disponibles.`, embeds: embeds.slice(0, maxEmbedsPerMessage) });
+			await interaction.reply({ content: `${newEquipments.length} nouveaux équipements usagés disponibles.`, embeds: embeds.slice(0, maxEmbedsPerMessage) });
 			// Max 10 embeds per messages
 			if (embeds.length > maxEmbedsPerMessage) {
 				let numberOfMessages = Math.ceil(embeds.length / maxEmbedsPerMessage);
@@ -38,5 +38,10 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 		}
 	}
 
-	await saveIds(usedItems.map(i => i.id));
+	// Keep ids in database
+	await saveIds(usedEquipments.map(i => i.id));
+}
+
+async function displayNewEquipments() {
+	
 }
